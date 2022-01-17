@@ -1,24 +1,28 @@
 import org.gradle.internal.os.OperatingSystem
 
+import java.time.Duration
+
 plugins {
     id 'java'
-    id 'java-library'
-    id 'de.marcphilipp.nexus-publish' version '0.4.0'
-    id 'maven-publish'
     id 'signing'
+    id 'maven-publish'
+    id "io.github.gradle-nexus.publish-plugin" version "1.0.0"
     // check dependency updates: ./gradlew dependencyUpdates -Drevision=release
     id 'com.github.ben-manes.versions' version '0.41.0'
     id 'com.github.hierynomus.license' version '0.16.1'
-    id 'io.codearte.nexus-staging' version '0.30.0'
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
 }
+
+group = 'io.perfana'
+version = file("VERSION").readLines().first()
+description = 'test-events-wiremock'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 dependencies {
     implementation 'io.perfana:event-scheduler:3.0.2'
@@ -27,11 +31,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.github.tomakehurst:wiremock:2.27.2'
 }
-
-group = 'io.perfana'
-version = '2.0.0-SNAPSHOT'
-description = 'test-events-wiremock'
-sourceCompatibility = '1.8'
 
 publishing {
     publications {
@@ -48,118 +47,78 @@ tasks.withType(JavaCompile) {
 license {
     // license check is broken on windows, skip
     if (OperatingSystem.current().isWindows()) ignoreFailures = true
-    header = file("src/main/resources/META-INF/LICENSE.txt")
     ext.year = Calendar.getInstance().get(Calendar.YEAR)
     ext.name = 'Peter Paul Bakker, Perfana'
+
+    header = file("src/main/resources/META-INF/LICENSE.txt")
+
     excludes(["**/*.txt", "src/main/resources/META-INF/services/**", "**/*.json"])
+
     // the standard java style makes intellij complain about dangling javadoc
-    mapping('java', 'SLASHSTAR_STYLE')
-    skipExistingHeaders = true
+    mapping {
+        java = "SLASHSTAR_STYLE"
+    }
+    ignoreFailures = false
+    strictCheck = true
+}
+
+// https://docs.gradle.org/current/userguide/signing_plugin.html
+// this only configures signing if the key is found
+def hasSigningKey = project.hasProperty("signingKeyId") || project.hasProperty("signingKey")
+if(hasSigningKey) {
+    sign(project)
+}
+void sign(Project project) {
+    project.signing {
+        required { project.gradle.taskGraph.hasTask("publish") }
+        def signingKeyId = project.findProperty("signingKeyId")
+        def signingKey = project.findProperty("signingKey")
+        def signingPassword = project.findProperty("signingPassword")
+        if (signingKeyId) {
+            useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+        } else if (signingKey) {
+            useInMemoryPgpKeys(signingKey, signingPassword)
+        }
+        sign publishing.publications.maven
+    }
+}
+
+// customize the pom so it complies to Maven central requirements https://central.sonatype.org/pages/requirements.html
+// https://docs.gradle.org/current/userguide/maven_plugin.html#sec:maven_pom_generation
+project.plugins.withType(MavenPublishPlugin).all {
+    PublishingExtension publishing = project.extensions.getByType(PublishingExtension)
+    publishing.publications.withType(MavenPublication).all { mavenPublication ->
+        mavenPublication.pom {
+            name = "${project.group}:${project.name}"
+            description = name
+            url = "https://github.com/perfana/test-events-wiremock.git"
+            licenses {
+                license {
+                    name = "The Apache License, Version 2.0"
+                    url = "https://www.apache.org/licenses/LICENSE-2.0"
+                }
+            }
+            developers {
+                developer {
+                    id = 'peter.paul.bakker'
+                    name = 'Peter Paul Bakker'
+                    email = 'peter.paul@perfana.io'
+                }
+            }
+            scm {
+                connection = "scm:git:https://github.com/perfana/test-events-wiremock.git"
+                developerConnection = "scm:git:git@github.com:perfana/test-events-wiremock.git"
+                url = "https://github.com/perfana/test-events-wiremock.git"
+            }
+        }
+    }
 }
 
 nexusPublishing {
     repositories {
         sonatype()
     }
+    // Prevent "java.net.SocketTimeoutException: timeout", when Sonatype is slow.
+    connectTimeout = Duration.ofMinutes(3)
+    clientTimeout = Duration.ofMinutes(3)
 }
-
-task sourceJar(type: Jar) {
-    classifier "sources"
-    from sourceSets.main.allJava
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier "javadoc"
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives jar
-    archives sourceJar
-    archives javadocJar
-}
-
-if (project.hasProperty('release')) {
-
-    subprojects {
-
-        task javadocJar(type: Jar) {
-            archiveClassifier.set('javadoc')
-            from javadoc
-        }
-
-        task sourcesJar(type: Jar) {
-            archiveClassifier.set('sources')
-            from sourceSets.main.allSource
-        }
-
-        artifacts {
-            archives javadocJar, sourcesJar
-        }
-    }
-
-    allprojects {
-        apply plugin: 'signing'
-        apply plugin: 'maven'
-
-        // Signature of artifacts
-        signing {
-            sign configurations.archives
-        }
-        // OSSRH publication
-        uploadArchives {
-            repositories {
-                mavenDeployer {
-                    // POM signature
-                    beforeDeployment { deployment -> signing.signPom(deployment) }
-                    // Target repository
-                    String repositoryUrl
-                    if (version.endsWith("SNAPSHOT")) {
-                        repositoryUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-                    }
-                    else {
-                        repositoryUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                    }
-                    repository(url: repositoryUrl) {
-                        authentication(userName: ossrhUser, password: ossrhPassword)
-                    }
-                    pom.project {
-                        name project.getName()
-                        description project.description
-                        packaging 'jar'
-                        url 'https://github.com/perfana/test-events-wiremock.git'
-
-                        scm {
-                            connection 'scm:git:https://github.com/perfana/test-events-wiremock.git'
-                            developerConnection 'scm:git:git@github.com:perfana/test-events-wiremock.git'
-                            url 'https://github.com/perfana/test-events-wiremock.git'
-                        }
-
-                        licenses {
-                            license {
-                                name 'The Apache Software License, Version 2.0'
-                                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                                distribution 'repo'
-                            }
-                        }
-
-                        developers {
-                            developer {
-                                id = 'peter.paul.bakker'
-                                name = 'Peter Paul Bakker'
-                                email = 'peter.paul@perfana.io'
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-}
-
-nexusStaging {
-    username = project.properties['ossrhUser'] ?: "noUser"
-    password = project.properties['ossrhPassword'] ?: "noPassword"
-}
-
