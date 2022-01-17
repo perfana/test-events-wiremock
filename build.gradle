@@ -7,30 +7,29 @@ plugins {
     id 'maven-publish'
     id 'signing'
     // check dependency updates: ./gradlew dependencyUpdates -Drevision=release
-    id 'com.github.ben-manes.versions' version '0.36.0'
-    id 'com.github.hierynomus.license' version '0.15.0'
-    id 'io.codearte.nexus-staging' version '0.22.0'
+    id 'com.github.ben-manes.versions' version '0.41.0'
+    id 'com.github.hierynomus.license' version '0.16.1'
+    id 'io.codearte.nexus-staging' version '0.30.0'
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots/"
     }
 }
 
 dependencies {
-    implementation 'nl.stokpop:event-scheduler:3.0.1'
+    implementation 'io.perfana:event-scheduler:3.0.2'
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
     implementation 'org.apache.httpcomponents:httpmime:4.5.13'
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.github.tomakehurst:wiremock:2.27.2'
 }
 
-group = 'nl.stokpop'
-version = '1.2.0'
+group = 'io.perfana'
+version = '2.0.0-SNAPSHOT'
 description = 'test-events-wiremock'
 sourceCompatibility = '1.8'
 
@@ -51,7 +50,7 @@ license {
     if (OperatingSystem.current().isWindows()) ignoreFailures = true
     header = file("src/main/resources/META-INF/LICENSE.txt")
     ext.year = Calendar.getInstance().get(Calendar.YEAR)
-    ext.name = 'Peter Paul Bakker, Stokpop Software Solutions'
+    ext.name = 'Peter Paul Bakker, Perfana'
     excludes(["**/*.txt", "src/main/resources/META-INF/services/**", "**/*.json"])
     // the standard java style makes intellij complain about dangling javadoc
     mapping('java', 'SLASHSTAR_STYLE')
@@ -112,7 +111,7 @@ if (project.hasProperty('release')) {
             repositories {
                 mavenDeployer {
                     // POM signature
-                    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                    beforeDeployment { deployment -> signing.signPom(deployment) }
                     // Target repository
                     String repositoryUrl
                     if (version.endsWith("SNAPSHOT")) {
@@ -128,12 +127,12 @@ if (project.hasProperty('release')) {
                         name project.getName()
                         description project.description
                         packaging 'jar'
-                        url 'https://github.com/stokpop/test-events-wiremock.git'
+                        url 'https://github.com/perfana/test-events-wiremock.git'
 
                         scm {
-                            connection 'scm:git:https://github.com/stokpop/test-events-wiremock.git'
-                            developerConnection 'scm:git:git@github.com:stokpop/test-events-wiremock.git'
-                            url 'https://github.com/stokpop/test-events-wiremock.git'
+                            connection 'scm:git:https://github.com/perfana/test-events-wiremock.git'
+                            developerConnection 'scm:git:git@github.com:perfana/test-events-wiremock.git'
+                            url 'https://github.com/perfana/test-events-wiremock.git'
                         }
 
                         licenses {
@@ -146,9 +145,9 @@ if (project.hasProperty('release')) {
 
                         developers {
                             developer {
-                                id = 'stokpop'
+                                id = 'peter.paul.bakker'
                                 name = 'Peter Paul Bakker'
-                                email = 'peter.paul.bakker@stokpop.nl'
+                                email = 'peter.paul@perfana.io'
                             }
                         }
                     }

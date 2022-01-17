@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package nl.stokpop.event.wiremock;
+package io.perfana.event.wiremock;
 
-import nl.stokpop.eventscheduler.api.EventLogger;
+import io.perfana.eventscheduler.api.EventLogger;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

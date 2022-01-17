@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package nl.stokpop.event.wiremock;
+package io.perfana.event.wiremock;
 
-import nl.stokpop.eventscheduler.api.Event;
-import nl.stokpop.eventscheduler.api.EventFactory;
-import nl.stokpop.eventscheduler.api.EventLogger;
-import nl.stokpop.eventscheduler.api.message.EventMessageBus;
+import io.perfana.eventscheduler.api.EventGenerator;
+import io.perfana.eventscheduler.api.EventGeneratorFactory;
+import io.perfana.eventscheduler.api.EventGeneratorProperties;
+import io.perfana.eventscheduler.api.EventLogger;
 
-public class WiremockEventFactory implements EventFactory<WiremockEventContext> {
+public class WiremockEventGeneratorFactory implements EventGeneratorFactory {
+
     @Override
-    public Event create(WiremockEventContext context, EventMessageBus messageBus, EventLogger logger) {
-        return new WiremockEvent(context, messageBus, logger);
+    public EventGenerator create(EventGeneratorProperties eventGeneratorProperties, EventLogger logger) {
+        return new WiremockEventGenerator(eventGeneratorProperties, logger);
     }
 }

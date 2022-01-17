@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package nl.stokpop.event.wiremock;
+package io.perfana.event.wiremock;
 
-import nl.stokpop.eventscheduler.api.CustomEvent;
-import nl.stokpop.eventscheduler.api.EventAdapter;
-import nl.stokpop.eventscheduler.api.EventLogger;
-import nl.stokpop.eventscheduler.api.message.EventMessageBus;
+import io.perfana.eventscheduler.api.CustomEvent;
+import io.perfana.eventscheduler.api.EventAdapter;
+import io.perfana.eventscheduler.api.EventLogger;
+import io.perfana.eventscheduler.api.message.EventMessageBus;
 
 import java.io.File;
 import java.io.IOException;

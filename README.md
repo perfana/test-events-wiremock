@@ -54,7 +54,7 @@ For example (from [example-pom.xml](src/test/resources/example-pom.xml)):
 
 ```xml
 <plugin>
-    <groupId>nl.stokpop</groupId>
+    <groupId>io.perfana</groupId>
     <artifactId>event-scheduler-maven-plugin</artifactId>
     <configuration>
         <eventSchedulerConfig>
@@ -66,7 +66,7 @@ For example (from [example-pom.xml](src/test/resources/example-pom.xml)):
                 ${eventScheduleScript}
             </scheduleScript>
             <eventConfigs>
-                <eventConfig implementation="nl.stokpop.event.wiremock.WiremockEventConfig">
+                <eventConfig implementation="io.perfana.event.wiremock.WiremockEventConfig">
                     <name>WiremockEvent1</name>
                     <wiremockFilesDir>src/test/resources/wiremock-stubs</wiremockFilesDir>
                     <wiremockUrl>http://localhost:9999</wiremockUrl>
@@ -89,7 +89,7 @@ For example (from [example-pom.xml](src/test/resources/example-pom.xml)):
     </configuration>
     <dependencies>
         <dependency>
-            <groupId>nl.stokpop</groupId>
+            <groupId>io.perfana</groupId>
             <artifactId>test-events-wiremock</artifactId>
             <version>${test-events-wiremock.version}</version>
         </dependency>
@@ -109,6 +109,6 @@ and
     mvn -f src/test/resources/example-pom.xml event-scheduler:test
 
 
-Works with the Stokpop event-scheduler framework: 
-* https://github.com/stokpop/event-scheduler
-* https://github.com/stokpop/events-gatling-maven-plugin
+Works with the Perfana event-scheduler framework: 
+* https://github.com/perfana/event-scheduler
+* https://github.com/perfana/events-gatling-maven-plugin

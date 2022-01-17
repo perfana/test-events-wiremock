@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package nl.stokpop.event.wiremock;
+package io.perfana.event.wiremock;
 
-public class WiremockClientException extends RuntimeException {
-    public WiremockClientException(String message) {
+public class WiremockEventException extends RuntimeException {
+    public WiremockEventException(String message) {
         super(message);
     }
 
-    public WiremockClientException(String message, Throwable cause) {
+    public WiremockEventException(String message, Throwable cause) {
         super(message, cause);
     }
 }

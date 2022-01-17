@@ -22,7 +22,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.stokpop</groupId>
+    <groupId>io.perfana</groupId>
     <artifactId>events-test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -49,7 +49,7 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>nl.stokpop</groupId>
+                    <groupId>io.perfana</groupId>
                     <artifactId>event-scheduler-maven-plugin</artifactId>
                     <version>${event-scheduler-maven-plugin.version}</version>
                 </plugin>
@@ -58,7 +58,7 @@
 
         <plugins>
             <plugin>
-                <groupId>nl.stokpop</groupId>
+                <groupId>io.perfana</groupId>
                 <artifactId>event-scheduler-maven-plugin</artifactId>
                 <configuration>
                     <eventSchedulerConfig>
@@ -70,7 +70,7 @@
                             ${eventScheduleScript}
                         </scheduleScript>
                         <eventConfigs>
-                            <eventConfig implementation="nl.stokpop.event.wiremock.WiremockEventConfig">
+                            <eventConfig implementation="io.perfana.event.wiremock.WiremockEventConfig">
                                 <name>WiremockEvent1</name>
                                 <wiremockFilesDir>src/test/resources/wiremock-stubs</wiremockFilesDir>
                                 <wiremockUrl>http://localhost:9999</wiremockUrl>
@@ -93,7 +93,7 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>nl.stokpop</groupId>
+                        <groupId>io.perfana</groupId>
                         <artifactId>test-events-wiremock</artifactId>
                         <version>${test-events-wiremock.version}</version>
                     </dependency>

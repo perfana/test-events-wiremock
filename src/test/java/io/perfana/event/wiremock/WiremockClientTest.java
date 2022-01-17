@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package nl.stokpop.event.wiremock;
+package io.perfana.event.wiremock;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import nl.stokpop.eventscheduler.log.EventLoggerStdOut;
+import io.perfana.eventscheduler.log.EventLoggerStdOut;
 import org.junit.Rule;
 import org.junit.Test;
 

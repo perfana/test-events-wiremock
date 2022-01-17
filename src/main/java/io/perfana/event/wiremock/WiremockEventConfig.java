@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package nl.stokpop.event.wiremock;
+package io.perfana.event.wiremock;
 
-import nl.stokpop.eventscheduler.api.config.EventConfig;
-import nl.stokpop.eventscheduler.api.config.TestContext;
+import io.perfana.eventscheduler.api.config.EventConfig;
+import io.perfana.eventscheduler.api.config.TestContext;
 
 public class WiremockEventConfig extends EventConfig {
     private String wiremockFilesDir;

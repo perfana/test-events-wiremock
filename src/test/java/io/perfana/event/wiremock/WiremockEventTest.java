@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package nl.stokpop.event.wiremock;
+package io.perfana.event.wiremock;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import nl.stokpop.eventscheduler.EventMessageBusSimple;
-import nl.stokpop.eventscheduler.api.CustomEvent;
-import nl.stokpop.eventscheduler.api.config.TestConfig;
-import nl.stokpop.eventscheduler.api.message.EventMessageBus;
-import nl.stokpop.eventscheduler.log.EventLoggerStdOut;
+import io.perfana.eventscheduler.EventMessageBusSimple;
+import io.perfana.eventscheduler.api.CustomEvent;
+import io.perfana.eventscheduler.api.config.TestConfig;
+import io.perfana.eventscheduler.api.message.EventMessageBus;
+import io.perfana.eventscheduler.log.EventLoggerStdOut;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -72,10 +72,10 @@ public class WiremockEventTest {
 
     @Test
     public void parseSettingsTwo() {
-        Map<String, String> settings = WiremockEvent.parseSettings("foo=bar;name=stokpop");
+        Map<String, String> settings = WiremockEvent.parseSettings("foo=bar;name=perfana");
         assertEquals(2, settings.size());
         assertEquals("bar", settings.get("foo"));
-        assertEquals("stokpop", settings.get("name"));
+        assertEquals("perfana", settings.get("name"));
     }
 
     @Test
