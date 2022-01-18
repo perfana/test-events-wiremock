@@ -114,18 +114,19 @@ project.plugins.withType(MavenPublishPlugin).all {
     }
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+    classifier "javadoc"
     from javadoc.destinationDir
 }
 
 artifacts {
-    archives sourcesJar
+    archives jar
+    archives sourceJar
     archives javadocJar
 }
 
