@@ -31,9 +31,10 @@ import static java.util.stream.Collectors.collectingAndThen;
 
 public class WiremockEvent extends EventAdapter<WiremockEventContext> {
 
-    public static final String EVENT_WIREMOCK_CHANGE_DELAY = "wiremock-change-delay";
+    public static final String EVENT_WIREMOCK_CHANGE_MAPPINGS = "wiremock-change-mappings";
+    public static final String EVENT_WIREMOCK_CHANGE_SETTINGS = "wiremock-change-settings";
 
-    private static final Set<String> ALLOWED_CUSTOM_EVENTS = setOf(EVENT_WIREMOCK_CHANGE_DELAY);
+    private static final Set<String> ALLOWED_CUSTOM_EVENTS = setOf(EVENT_WIREMOCK_CHANGE_MAPPINGS, EVENT_WIREMOCK_CHANGE_SETTINGS);
 
     private List<WiremockClient> clients;
     private File rootDir;
@@ -66,7 +67,7 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
                 .collect(collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
-    private void importAllWiremockFiles(WiremockClient client, File[] files, Map<String, String> replacements) {
+    private void importAllWiremockFiles(WiremockClient client, File[] files, Map<String, String> replacements, String uriPath) {
         Arrays.stream(files)
                 .peek(file -> logger.info("check " + file))
                 .filter(file -> !file.isDirectory())
@@ -74,7 +75,7 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
                 .peek(file -> logger.info("import " + file))
                 .map(this::readContents)
                 .filter(Objects::nonNull)
-                .forEach(fileContents -> client.uploadFileWithReplacements(fileContents, replacements));
+                .forEach(fileContents -> client.uploadFileWithReplacements(fileContents, replacements, uriPath));
     }
 
     private String readContents(File file) {
@@ -91,18 +92,39 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
 
         String eventName = scheduleEvent.getName();
         
-        if (EVENT_WIREMOCK_CHANGE_DELAY.equalsIgnoreCase(eventName)) {
-            injectDelayFromSettings(scheduleEvent);
+        if (EVENT_WIREMOCK_CHANGE_MAPPINGS.equalsIgnoreCase(eventName)) {
+            injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/mappings");
+        }
+        else if (EVENT_WIREMOCK_CHANGE_SETTINGS.equalsIgnoreCase(eventName)) {
+            injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/settings");
         }
         else {
             logger.debug("ignoring unknown event [" + eventName + "]");
         }
     }
 
-    private void injectDelayFromSettings(CustomEvent scheduleEvent) {
-        Map<String, String> replacements = parseSettings(scheduleEvent.getSettings());
+    private void injectDelayFromSettingsIntoFiles(CustomEvent scheduleEvent, String uriPath) {
+        Map<String, String> settings = parseSettings(scheduleEvent.getSettings());
+
+        String file = settings.get("file");
+
+        Map<String, String> replacements = settings.entrySet().stream()
+                .filter(e -> !e.getKey().equals("file"))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        File jsonFile = null;
+        if (file != null) {
+            jsonFile = new File(rootDir, file);
+            if (!jsonFile.exists()) {
+                logger.error("Wiremock json file does not exist: " + jsonFile);
+                return;
+            }
+        }
+
+        File[] files = (file != null) ? new File[] { jsonFile } : rootDir.listFiles();
+
         if (rootDir != null && clients != null) {
-            clients.forEach(client -> importAllWiremockFiles(client, rootDir.listFiles(), replacements));
+            clients.forEach(client -> importAllWiremockFiles(client, files, replacements, uriPath));
         }
     }
 

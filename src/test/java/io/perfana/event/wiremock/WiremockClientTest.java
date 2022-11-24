@@ -51,6 +51,6 @@ public class WiremockClientTest {
 
         Map<String,String> replacements = new HashMap<>();
         replacements.put("delay", "2000");
-        client.uploadFileWithReplacements(MESSAGE, replacements);
+        client.uploadFileWithReplacements(MESSAGE, replacements, "/__admin/mappings");
     }
 }

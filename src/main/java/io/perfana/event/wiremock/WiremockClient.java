@@ -80,19 +80,21 @@ class WiremockClient {
         HttpResponse response = httpClient.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
         if (statusCode < 200 || statusCode > 299) {
-            throw new WiremockClientException(String.format("Unexpected status code: %d for request: %s", statusCode, request));
+            throw new WiremockClientException(String.format("Unexpected status code: %s for request: %s", response.getStatusLine(), request));
         }
         return response;
     }
 
-    void uploadFileWithReplacements(String fileContents, Map<String, String> replacements) {
-        String uri = String.format("%s", baseUrl);
+    void uploadFileWithReplacements(String fileContents, Map<String, String> replacements, String uriPath) {
+        String uri = String.format("%s%s", baseUrl, uriPath);
 
         try {
             URIBuilder uriBuilder = new URIBuilder(uri);
 
             HttpPost httpPost = new HttpPost(uriBuilder.build());
             String replaced = injectReplacements(fileContents, replacements);
+
+            logger.debug("About to send to " + uriPath + ": " + replaced);
 
             StringEntity data = new StringEntity(replaced, CHARSET_UTF8);
 
