@@ -4,7 +4,7 @@ Events to load and change wiremock stubs during load tests.
 
 Properties:
 * `wiremockFilesDir` the directory where to find the wiremock files
-* `wiremockUrl` the wiremock urls, comma separated
+* `wiremockUrl` the wiremock urls, comma separated, including api endpoint, e.g. `http://localhost:9999/__admin/mappings` or `http://localhost:9999/__admin/settings`
 * `useProxy` on port 8888, for example to use with fiddler
 
 Custom events:
@@ -80,7 +80,7 @@ For example (from [example-pom.xml](src/test/resources/example-pom.xml)):
                 <eventConfig implementation="io.perfana.event.wiremock.WiremockEventConfig">
                     <name>WiremockEvent1</name>
                     <wiremockFilesDir>src/test/resources/wiremock-stubs</wiremockFilesDir>
-                    <wiremockUrl>http://localhost:9999</wiremockUrl>
+                    <wiremockUrl>http://localhost:9999/__admin/mappings</wiremockUrl>
                     <useProxy>false</useProxy>
                     <testConfig>
                         <systemUnderTest>${systemUnderTest}</systemUnderTest>
