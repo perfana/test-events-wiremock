@@ -29,19 +29,30 @@ Example wiremock response with a dynamic delay:
 }
 ```
 Put this in a file at in the files dir and it gets uploaded with the specific delay.
+The `$delay` will be replaced by the values in the `eventSchedulerScript`.
 
-Define the delays in a eventSchedulerScript, example in use with events-gatling-maven-plugin:
+You can define multiple delays in multiple mapping files.
+
+Define the delays in a `eventSchedulerScript`, example in use with events-gatling-maven-plugin:
 
 ```xml
 <eventSchedulerScript>
-    PT0S|wiremock-change-delay|delay=400
-    PT30S|wiremock-change-delay|delay=4000
-    PT1M30S|wiremock-change-delay|delay=8000
+    PT0S|wiremock-change-delay-fast|delay=400
+    PT30S|wiremock-change-delay-slow|delay=4000
+    PT1M30S|wiremock-change-delay-really-slow|delay=8000
 </eventSchedulerScript>
 ```
 This means: set delay to 400 milliseconds at the start of the Gatling load test.
 Then increase the response time to 4000 milliseconds after 30 seconds.
-And increase response tim to 8000 milliseconds after 1 minute and 30 seconds. 
+And increase response time to 8000 milliseconds after 1 minute and 30 seconds.
+
+The second part (`wiremock-change-delay-fast`) is an event label that will be attached to this event and made visible
+in Perfana and in graphs.
+
+To replace multiple delays, use multiple replace tags in your mapper files,
+e.g. `${delay-1}`, `${delay-2}`, `${delay-3}`, you can use a `;` separator in one event line:
+
+    PT30S|wiremock-change-delay|delay-1=4000;delay-2=3000;delay-3=2000
 
 ## Use with events-*-maven-plugin
 
