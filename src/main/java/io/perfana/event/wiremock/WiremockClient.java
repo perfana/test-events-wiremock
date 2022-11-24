@@ -86,7 +86,7 @@ class WiremockClient {
     }
 
     void uploadFileWithReplacements(String fileContents, Map<String, String> replacements) {
-        String uri = String.format("%s/__admin/mappings", baseUrl);
+        String uri = String.format("%s", baseUrl);
 
         try {
             URIBuilder uriBuilder = new URIBuilder(uri);
