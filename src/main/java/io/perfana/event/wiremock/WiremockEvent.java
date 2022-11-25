@@ -33,8 +33,10 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
 
     public static final String EVENT_WIREMOCK_CHANGE_MAPPINGS = "wiremock-change-mappings";
     public static final String EVENT_WIREMOCK_CHANGE_SETTINGS = "wiremock-change-settings";
+    public static final String EVENT_WIREMOCK_CHANGE_IMPORT = "wiremock-change-import";
 
-    private static final Set<String> ALLOWED_CUSTOM_EVENTS = setOf(EVENT_WIREMOCK_CHANGE_MAPPINGS, EVENT_WIREMOCK_CHANGE_SETTINGS);
+    private static final Set<String> ALLOWED_CUSTOM_EVENTS =
+            setOf(EVENT_WIREMOCK_CHANGE_MAPPINGS, EVENT_WIREMOCK_CHANGE_SETTINGS, EVENT_WIREMOCK_CHANGE_IMPORT);
 
     private List<WiremockClient> clients;
     private File rootDir;
@@ -94,6 +96,9 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
         
         if (EVENT_WIREMOCK_CHANGE_MAPPINGS.equalsIgnoreCase(eventName)) {
             injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/mappings");
+        }
+        else if (EVENT_WIREMOCK_CHANGE_IMPORT.equalsIgnoreCase(eventName)) {
+            injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/mappings/import");
         }
         else if (EVENT_WIREMOCK_CHANGE_SETTINGS.equalsIgnoreCase(eventName)) {
             injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/settings");

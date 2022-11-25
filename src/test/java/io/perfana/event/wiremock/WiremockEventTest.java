@@ -51,6 +51,7 @@ public class WiremockEventTest {
         event.keepAlive();
         event.customEvent(CustomEvent.createFromLine("PT0S|wiremock-change-settings|file=wiremock-settings.json;delay=400"));
         event.customEvent(CustomEvent.createFromLine("PT3S|wiremock-change-mappings|file=wiremock-delay.json;delay=4000"));
+        event.customEvent(CustomEvent.createFromLine("PT13S|wiremock-change-import|file=afterburner-stubs.json;delay=5000"));
         event.customEvent(CustomEvent.createFromLine("PT1M|wiremock-change-mappings|file=wiremock-delay.json;delay=8000"));
         event.afterTest();
 

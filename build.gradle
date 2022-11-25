@@ -127,3 +127,10 @@ nexusPublishing {
     connectTimeout = Duration.ofMinutes(3)
     clientTimeout = Duration.ofMinutes(3)
 }
+
+clean {
+    println "clean mappings json files"
+    delete(fileTree("${projectDir}/src/test/resources/mappings/") {
+        include '*.json'
+    })
+}

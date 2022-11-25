@@ -35,6 +35,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 class WiremockClient {
 
@@ -80,9 +81,18 @@ class WiremockClient {
         HttpResponse response = httpClient.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
         if (statusCode < 200 || statusCode > 299) {
-            throw new WiremockClientException(String.format("Unexpected status code: %s for request: %s", response.getStatusLine(), request));
+            String result = extractResponseBody(response);
+            throw new WiremockClientException(String.format("Unexpected status code: %s for request: %s, %s",
+                    response.getStatusLine(), request, result));
         }
         return response;
+    }
+
+    private static String extractResponseBody(HttpResponse response) throws IOException {
+        if (response == null) { return "null"; }
+
+        return new BufferedReader(new InputStreamReader(response.getEntity().getContent()))
+                .lines().collect(Collectors.joining("\n"));
     }
 
     void uploadFileWithReplacements(String fileContents, Map<String, String> replacements, String uriPath) {
