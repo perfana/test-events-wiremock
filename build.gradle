@@ -8,7 +8,7 @@ plugins {
     id 'maven-publish'
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
     // check dependency updates: ./gradlew dependencyUpdates -Drevision=release
-    id 'com.github.ben-manes.versions' version '0.41.0'
+    id 'com.github.ben-manes.versions' version '0.44.0'
     id 'com.github.hierynomus.license' version '0.16.1'
 }
 
@@ -25,11 +25,11 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 dependencies {
-    implementation 'io.perfana:event-scheduler:3.0.2'
+    implementation 'io.perfana:event-scheduler:3.1.0'
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
     implementation 'org.apache.httpcomponents:httpmime:4.5.13'
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'com.github.tomakehurst:wiremock:2.27.2'
+    testImplementation 'com.github.tomakehurst:wiremock-jre8:2.35.0'
 }
 
 publishing {
@@ -126,4 +126,11 @@ nexusPublishing {
     // Prevent "java.net.SocketTimeoutException: timeout", when Sonatype is slow.
     connectTimeout = Duration.ofMinutes(3)
     clientTimeout = Duration.ofMinutes(3)
+}
+
+clean {
+    println "clean mappings json files"
+    delete(fileTree("${projectDir}/src/test/resources/mappings/") {
+        include '*.json'
+    })
 }

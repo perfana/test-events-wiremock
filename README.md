@@ -4,11 +4,16 @@ Events to load and change wiremock stubs during load tests.
 
 Properties:
 * `wiremockFilesDir` the directory where to find the wiremock files
-* `wiremockUrl` the wiremock urls, comma separated
+* `wiremockUrl` the wiremock urls, comma separated, including api endpoint, e.g. `http://localhost:9999/__admin/mappings` or `http://localhost:9999/__admin/settings`
 * `useProxy` on port 8888, for example to use with fiddler
 
 Custom events:
-* `wiremock-change-delay` use to change delay of wiremock instances at specific time
+* `wiremock-change-mappings` use to change delay of wiremock mapping file at specific time
+* `wiremock-change-settings` use to change delay of wiremock setting file at specific time
+* `wiremock-change-import` use to change delay of wiremock import file at specific time
+
+Use the correct type of file for each event. For import use the exported file of wiremock studio
+that contains multiple mappings.
 
 Example wiremock response with a dynamic delay:
 
@@ -37,22 +42,22 @@ Define the delays in a `eventSchedulerScript`, example in use with events-gatlin
 
 ```xml
 <eventSchedulerScript>
-    PT0S|wiremock-change-delay(fast)|delay=400
-    PT30S|wiremock-change-delay(slow)|delay=4000
-    PT1M30S|wiremock-change-delay(really-slow)|delay=8000
+    PT0S|wiremock-change-mappings(fast)|delay=400
+    PT30S|wiremock-change-mappings(slow)|delay=4000
+    PT1M30S|wiremock-change-mappings(really-slow)|delay=8000
 </eventSchedulerScript>
 ```
 This means: set delay to 400 milliseconds at the start of the Gatling load test.
 Then increase the response time to 4000 milliseconds after 30 seconds.
 And increase response time to 8000 milliseconds after 1 minute and 30 seconds.
 
-The second part (`wiremock-change-delay(fast)`) is an event label that needs to be `wiremock-change-delay` the event.
-In brackets additional free-text info that is made visible in Perfana and in graphs.
+The second part (`wiremock-change-mappings(fast)`) is an event name plus annotation that 
+is send as event annotation as made visible in Perfana and in graphs.
 
 To replace multiple delays, use multiple replace tags in your mapper files,
 e.g. `${delay-1}`, `${delay-2}`, `${delay-3}`, you can use a `;` separator in one event line:
 
-    PT30S|wiremock-change-delay|delay-1=4000;delay-2=3000;delay-3=2000
+    PT30S|wiremock-change-mappings|delay-1=4000;delay-2=3000;delay-3=2000
 
 ## Use with events-*-maven-plugin
 
@@ -80,7 +85,7 @@ For example (from [example-pom.xml](src/test/resources/example-pom.xml)):
                 <eventConfig implementation="io.perfana.event.wiremock.WiremockEventConfig">
                     <name>WiremockEvent1</name>
                     <wiremockFilesDir>src/test/resources/wiremock-stubs</wiremockFilesDir>
-                    <wiremockUrl>http://localhost:9999</wiremockUrl>
+                    <wiremockUrl>http://localhost:9999/__admin/mappings</wiremockUrl>
                     <useProxy>false</useProxy>
                     <testConfig>
                         <systemUnderTest>${systemUnderTest}</systemUnderTest>
