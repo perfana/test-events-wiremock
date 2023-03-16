@@ -18,6 +18,7 @@ package io.perfana.event.wiremock;
 import io.perfana.eventscheduler.api.CustomEvent;
 import io.perfana.eventscheduler.api.EventAdapter;
 import io.perfana.eventscheduler.api.EventLogger;
+import io.perfana.eventscheduler.api.config.TestContext;
 import io.perfana.eventscheduler.api.message.EventMessageBus;
 
 import java.io.File;
@@ -41,13 +42,13 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
     private List<WiremockClient> clients;
     private File rootDir;
     
-    public WiremockEvent(WiremockEventContext eventConfig, EventMessageBus messageBus, EventLogger logger) {
-        super(eventConfig, messageBus, logger);
+    public WiremockEvent(WiremockEventContext eventConfig, TestContext testContext, EventMessageBus messageBus, EventLogger logger) {
+        super(eventConfig, testContext, messageBus, logger);
     }
 
     @Override
     public void beforeTest() {
-        logger.info("before test [" + eventContext.getTestContext().getTestRunId() + "]");
+        logger.info("before test [" + testContext.getTestRunId() + "]");
 
         String filesDir = eventContext.getWiremockFilesDir();
         if (filesDir == null) {

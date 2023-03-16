@@ -42,11 +42,11 @@ public class WiremockEventTest {
         eventConfig.setName("myWiremockEvent");
         eventConfig.setWiremockFilesDir(new File(".","src/test/resources/wiremock-stubs").getAbsolutePath());
         eventConfig.setWiremockUrl("http://localhost:" + wireMockRule.port() + ",http://localhost:" + wireMockRule.port());
-        eventConfig.setTestConfig(TestConfig.builder().testRunId("my-test-run-id").build());
+        TestConfig testConfig = TestConfig.builder().testRunId("my-test-run-id").build();
 
         EventMessageBus messageBus = new EventMessageBusSimple();
 
-        WiremockEvent event = new WiremockEvent(eventConfig.toContext(), messageBus, EventLoggerStdOut.INSTANCE);
+        WiremockEvent event = new WiremockEvent(eventConfig.toContext(), testConfig.toContext(), messageBus, EventLoggerStdOut.INSTANCE);
         event.beforeTest();
         event.keepAlive();
         event.customEvent(CustomEvent.createFromLine("PT0S|wiremock-change-settings|file=wiremock-settings.json;delay=400"));

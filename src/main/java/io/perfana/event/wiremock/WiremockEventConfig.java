@@ -16,7 +16,6 @@
 package io.perfana.event.wiremock;
 
 import io.perfana.eventscheduler.api.config.EventConfig;
-import io.perfana.eventscheduler.api.config.TestContext;
 
 public class WiremockEventConfig extends EventConfig {
     private String wiremockFilesDir;
@@ -40,10 +39,6 @@ public class WiremockEventConfig extends EventConfig {
         return new WiremockEventContext(super.toContext(), wiremockFilesDir, wiremockUrl, useProxy);
     }
 
-    @Override
-    public WiremockEventContext toContext(TestContext override) {
-        return new WiremockEventContext(super.toContext(override), wiremockFilesDir, wiremockUrl, useProxy);
-    }
     @Override
     public String toString() {
         return "WiremockEventConfig{" +

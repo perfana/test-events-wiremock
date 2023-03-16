@@ -18,11 +18,12 @@ package io.perfana.event.wiremock;
 import io.perfana.eventscheduler.api.Event;
 import io.perfana.eventscheduler.api.EventFactory;
 import io.perfana.eventscheduler.api.EventLogger;
+import io.perfana.eventscheduler.api.config.TestContext;
 import io.perfana.eventscheduler.api.message.EventMessageBus;
 
 public class WiremockEventFactory implements EventFactory<WiremockEventContext> {
     @Override
-    public Event create(WiremockEventContext context, EventMessageBus messageBus, EventLogger logger) {
-        return new WiremockEvent(context, messageBus, logger);
+    public Event create(WiremockEventContext context, TestContext testContext, EventMessageBus messageBus, EventLogger logger) {
+        return new WiremockEvent(context, testContext, messageBus, logger);
     }
 }
