@@ -15,6 +15,15 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
+
+    // allow to work with snapshot versions
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
+
 }
 
 group = 'io.perfana'
