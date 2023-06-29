@@ -21,6 +21,7 @@ public class WiremockEventConfig extends EventConfig {
     private String wiremockFilesDir;
     private String wiremockUrl;
     private boolean useProxy = false;
+    private boolean continueOnUploadError = true;
 
     public void setWiremockFilesDir(String wiremockFilesDir) {
         this.wiremockFilesDir = wiremockFilesDir;
@@ -34,9 +35,13 @@ public class WiremockEventConfig extends EventConfig {
         this.useProxy = useProxy;
     }
 
+    public void setContinueOnUploadError(boolean continueOnUploadError) {
+        this.continueOnUploadError = continueOnUploadError;
+    }
+
     @Override
     public WiremockEventContext toContext() {
-        return new WiremockEventContext(super.toContext(), wiremockFilesDir, wiremockUrl, useProxy);
+        return new WiremockEventContext(super.toContext(), wiremockFilesDir, wiremockUrl, useProxy, continueOnUploadError);
     }
 
     @Override
@@ -45,6 +50,7 @@ public class WiremockEventConfig extends EventConfig {
             "wiremockFilesDir='" + wiremockFilesDir + '\'' +
             ", wiremockUrl='" + wiremockUrl + '\'' +
             ", useProxy=" + useProxy +
+            ", continueOnUploadError=" + continueOnUploadError +
             "} " + super.toString();
     }
 }

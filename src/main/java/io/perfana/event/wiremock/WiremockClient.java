@@ -104,7 +104,7 @@ class WiremockClient {
             HttpPost httpPost = new HttpPost(uriBuilder.build());
             String replaced = injectReplacements(fileContents, replacements);
 
-            logger.debug("About to send to " + uriPath + ": " + replaced);
+            logger.debug("About to send to " + uriPath + ": " + reduceLength(replaced, 2048));
 
             StringEntity data = new StringEntity(replaced, CHARSET_UTF8);
 
@@ -116,6 +116,13 @@ class WiremockClient {
         } catch (URISyntaxException | IOException e) {
             throw new WiremockClientException("call to wiremock failed", e);
         }
+    }
+
+    private static String reduceLength(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength) + "...";
+        }
+        return text;
     }
 
     private String injectReplacements(String fileContents, Map<String, String> replacements) {

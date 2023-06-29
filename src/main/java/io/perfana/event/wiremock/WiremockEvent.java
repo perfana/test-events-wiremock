@@ -23,7 +23,6 @@ import io.perfana.eventscheduler.api.message.EventMessageBus;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,15 +74,29 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
                 .peek(file -> logger.info("check " + file))
                 .filter(file -> !file.isDirectory())
                 .filter(File::canRead)
+                .filter(file -> file.getName().endsWith(".json"))
                 .peek(file -> logger.info("import " + file))
                 .map(this::readContents)
                 .filter(Objects::nonNull)
-                .forEach(fileContents -> client.uploadFileWithReplacements(fileContents, replacements, uriPath));
+                .forEach(fileContents -> uploadWithTryCatch(client, replacements, uriPath, fileContents));
+    }
+
+    private void uploadWithTryCatch(WiremockClient client, Map<String, String> replacements, String uriPath, String fileContents) {
+        try {
+            client.uploadFileWithReplacements(fileContents, replacements, uriPath);
+        } catch (Exception e) {
+            if (eventContext.isContinueOnUploadError()) {
+                logger.error("Error uploading file: " + e.getMessage());
+            } else {
+                logger.error("Error uploading file: " + e.getMessage());
+                throw e;
+            }
+        }
     }
 
     private String readContents(File file) {
         try {
-            return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+            return Files.readString(file.toPath());
         } catch (IOException e) {
             logger.error("reading file: " + file);
             return null;

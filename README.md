@@ -6,6 +6,7 @@ Properties:
 * `wiremockFilesDir` the directory where to find the wiremock files
 * `wiremockUrl` the wiremock urls, comma separated, including api endpoint, e.g. `http://localhost:9999/__admin/mappings` or `http://localhost:9999/__admin/settings`
 * `useProxy` on port 8888, for example to use with fiddler
+* `continueOnUploadError` if true, continue uploading other files if an upload error occurs, default is true
 
 Custom events:
 * `wiremock-change-mappings` use to change delay of wiremock mapping file at specific time
@@ -14,6 +15,8 @@ Custom events:
 
 Use the correct type of file for each event. For import use the exported file of wiremock studio
 that contains multiple mappings.
+
+All files should 
 
 Example wiremock response with a dynamic delay:
 
