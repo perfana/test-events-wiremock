@@ -4,21 +4,24 @@ Events to load and change wiremock stubs during load tests.
 
 Properties:
 * `wiremockFilesDir` the directory where to find the wiremock files
-* `wiremockUrl` the wiremock urls, comma separated, including api endpoint, e.g. `http://localhost:9999/__admin/mappings` or `http://localhost:9999/__admin/settings`
-* `useProxy` on port 8888, for example to use with fiddler
+* `wiremockUrl` the wiremock base url, e.g. `http://wiremock:9999/`
+* `useProxy` true/false calls localhost proxy on port 8888, for example to use with mitmproxy
 * `continueOnUploadError` if true, continue uploading other files if an upload error occurs, default is true
 
 Custom events:
-* `wiremock-change-mappings` use to change delay of wiremock mapping file at specific time
-* `wiremock-change-settings` use to change delay of wiremock setting file at specific time
-* `wiremock-change-import` use to change delay of wiremock import file at specific time
+* `wiremock-change-mappings` --- change delay of wiremock mapping file(s)
+  * uses the `/__admin/mappings` endpoint
+* `wiremock-change-settings` --- change delay of wiremock settings file
+  * uses the `/__admin/settings` endpoint
+* `wiremock-change-import` --- change delay of wiremock import file 
+  * uses the `/__admin/mappings/import` endpoint
 
 Use the correct type of file for each event. For import use the exported file of wiremock studio
 that contains multiple mappings.
 
 All files should 
 
-Example wiremock response with a dynamic delay:
+Example wiremock response (single mapping) with a dynamic delay:
 
 ```json
 {
@@ -61,6 +64,11 @@ To replace multiple delays, use multiple replace tags in your mapper files,
 e.g. `${delay-1}`, `${delay-2}`, `${delay-3}`, you can use a `;` separator in one event line:
 
     PT30S|wiremock-change-mappings|delay-1=4000;delay-2=3000;delay-3=2000
+
+## use proxy
+
+Use a proxy like [mitmproxy](https://mitmproxy.org/) to debug the http traffic between the 
+plugin and wiremock. Set `useProxy` to true and use activate proxy on `http://localhost:8888`.
 
 ## Use with events-*-maven-plugin
 
