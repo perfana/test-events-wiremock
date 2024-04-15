@@ -1,0 +1,1276 @@
+{
+  "mappings" : [ {
+    "id" : "b02f6168-a4b9-4a07-b68e-3e1597418e94",
+    "name" : "This will log abundantly!",
+    "request" : {
+      "urlPath" : "/log-some",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 4258951087961709784,\n  \"name\" : \"Romaine Lindgren V\",\n  \"message\" : \"Nemo rerum eveniet dolores rem quia dignissimos. Deserunt dolorem sed. Dolorem magnam repellat officia qui. Aliquid dignissimos natus et alias modi et accusamus.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "b02f6168-a4b9-4a07-b68e-3e1597418e94",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.085298Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "logSome",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "bf5a1405-e740-41cc-840b-e899a290e6e5",
+    "name" : "This will log abundantly!",
+    "request" : {
+      "urlPath" : "/log-some",
+      "method" : "POST"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 6976596177944619528,\n  \"name\" : \"Al Collins\",\n  \"message\" : \"Sit vero nihil omnis tempore enim. Labore non ab ea vitae eos. Ullam eaque voluptatem et provident.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "bf5a1405-e740-41cc-840b-e899a290e6e5",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.090643Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "logSomeBody",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "892cc164-32f8-4513-8e3f-c96a1188fb20",
+    "name" : "Upload a file using multipart/form-data and store in temp directory.",
+    "request" : {
+      "urlPath" : "/files/upload",
+      "method" : "POST"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"odpo0bqq817mktrembbkfqcjm4wr6v3qnqd5c5ve8x8vv73o4yjn5tul3bretjbissrapawevjbpjlob296bm5yclnibbg\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "892cc164-32f8-4513-8e3f-c96a1188fb20",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.091402Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "upload",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "12efead2-c6b1-4389-9e3f-4f2224d492b3",
+    "name" : "Store a purchase in the database.",
+    "request" : {
+      "urlPath" : "/basket/store",
+      "method" : "POST"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"totalAmount\" : 197092594700490712,\n  \"message\" : \"Hic ad voluptates esse cupiditate eos placeat. Nulla consequuntur repellendus molestiae aut similique. Provident est ut impedit numquam omnis corporis rem. Tempore neque dolor. Nemo harum quisquam ver\",\n  \"customer\" : \"53tm2ynugdwawdlf29azv37c6k6rhfmi2jo5d0n4t4ia7i1zu8g2i9m6kvxkv7cyisybde92dr8dls9nreck01854lnbabnkxc85fllva4rt93ocdutunv32bq8k9fa5nsdxmofp7eqldsduc7rix8to\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "12efead2-c6b1-4389-9e3f-4f2224d492b3",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.09305Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "store",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "totalAmount" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "customer" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "89e94e18-02cc-4ea3-b184-46cdaf0c7991",
+    "name" : "Simulates a basket purchase request with validation. What can possibly go wrong?",
+    "request" : {
+      "urlPath" : "/basket/purchase",
+      "method" : "POST"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"totalAmount\" : 6154022364946197696,\n  \"message\" : \"Ratione voluptates odio exercitationem qui ut. Quaerat fuga sed facere eos fugit. Totam voluptatem praesentium harum id cupiditate sapiente in.\",\n  \"customer\" : \"8krowl0xlfrk4b92bx8od0ocam0t5nhcxxqd8c6\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "89e94e18-02cc-4ea3-b184-46cdaf0c7991",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.094485Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "purchase",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "totalAmount" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "customer" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "464a8f8d-46d4-4d70-a146-9bf984660248",
+    "name" : "Check connection to remote port. This measures the TCP handshake (socket.connect()) to the remote system.",
+    "request" : {
+      "urlPath" : "/tcp/connect",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 3184808690151788414,\n  \"name\" : \"Johnathan Conroy\",\n  \"message\" : \"Mollitia exercitationem consectetur. Rerum magnam voluptas et temporibus sit. Aut temporibus enim autem.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "464a8f8d-46d4-4d70-a146-9bf984660248",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.096136Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "tcpConnect",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "22617397-85fc-4d15-bd69-0091a070cc38",
+    "name" : "Show system info for this jvm, memory, cpu and threads.",
+    "request" : {
+      "urlPath" : "/system-info",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"availableProcessors\" : 1128616413,\n  \"totalMemory\" : 3008729024856518368,\n  \"threads\" : 411369002,\n  \"maxMemory\" : 161601140914943624,\n  \"freeMemory\" : 2420026236797755434,\n  \"threadNames\" : [ \"homagzfz9yg0pijdxqq6b7itmvrigrpm9zgpm5slsv55wa1cwcczk9jdq6rob9p6c9z8htjwaef2ca2bb3hlvx2brnx9uc4ydhnya562wyb3fujf7dps9d1zq2c51xlowfcgfznh5o5az2d8bojhirqt2hub04t5tw5lkswcx6hol1n7rvwc59omomgj2lqmxfrirk4b\", \"06bcjxhzlyfcwyj3l56hmibpq1svyhhxgh5gkizbmihrto8vd4pjx24x8nujldqwm5p5xessy8tliyt2utv9lvi43hesyhknysvlh4z62idvjrp674dzigzx4t3bs8f157qvsg84h1vj1zx71ti6cxhdvkgjljoj7ujbar0j05djazsbvbglbbw0n36\", \"4bl9429jacbab5l64j42qxbf6sww4f\", \"nmth38eookrto5xzk25qo3rgkoiq98k4aktpt3ua9h4u5kkrndxk30mycqleq\", \"2l879w26r3rhf4b74xkcryg91ors39s6ebvg7yfeurv9di3t0llftdt0qez5x10fuiod0oe6izt5k1cbviym9rc8efcw1bu7kfewwq5on9pwbddpwxtujnka6uw14xfpa5gxj0gqiaz7q6q3oa8nps69e7ov562psp3me76vrdnmez8u\", \"j8b623i86qe30lyvi2h5dd8op0o4jdaq6waqbthowsfr9x19z7tdolwebv9s0nodl8oyyp2lvi4bo7nv5iexzgbuvtr57yizzvds78pe6pd7y7kuj3gnqyzwe7k9dkyo4z6qtxzihufvj4sysroq563zafsj\" ]\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "22617397-85fc-4d15-bd69-0091a070cc38",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.104174Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "systemInfo",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "availableProcessors" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "maxMemory" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "freeMemory" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "totalMemory" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "threads" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "threadNames" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "abcdf3c6-4c1d-464d-bb68-769aab1fabc2",
+    "name" : "Calculate the sum of prime numbers, with some additional delay, using a regular (serial) stream.",
+    "request" : {
+      "urlPath" : "/serial-stream",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 3836516331752709628,\n  \"name\" : \"Noreen Berge\",\n  \"message\" : \"Porro similique voluptas qui provident repellat nesciunt. Inventore sed incidunt. Maxime enim saepe similique et eveniet impedit. Aut non laboriosam.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "abcdf3c6-4c1d-464d-bb68-769aab1fabc2",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.105823Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "goSerialStream",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "aa1d4890-9212-4529-8f67-ab262228b092",
+    "name" : "The secured delay call does a simple java sleep in request thread for 'duration' milliseconds.",
+    "request" : {
+      "urlPath" : "/secured-delay",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 1347092278477147782,\n  \"name\" : \"Kai Heaney\",\n  \"message\" : \"Ex est ducimus aut quasi odio consequatur. Reiciendis ex ea. Laborum et aut ut quibusdam aut quia doloremque.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "aa1d4890-9212-4529-8f67-ab262228b092",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.107023Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "delay",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "eb0c1268-d311-46e1-b36d-5cc721cdcd03",
+    "name" : "Check request scope behaviour",
+    "request" : {
+      "urlPath" : "/request-scope",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 5365258834845740733,\n  \"name\" : \"Kyung Kertzmann\",\n  \"message\" : \"Fugit qui totam velit ipsum. Ducimus ullam officiis. Eos quam error totam et ipsam. Dolore dolor molestiae officia.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "eb0c1268-d311-46e1-b36d-5cc721cdcd03",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.108109Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "delay_1",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "b66d00c1-8c95-4790-8b5e-25a09236da52",
+    "name" : "Call one remote service.",
+    "request" : {
+      "urlPath" : "/remote/call",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"ipgevy80xj0mmes4iq23eal3y0947si3dgqrkgkvef\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "b66d00c1-8c95-4790-8b5e-25a09236da52",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.108543Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "remoteCallHttpClient",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "0a4aa3f7-9082-4bc4-af9f-0d6c76c6b6c6",
+    "name" : "Call traffic light with retries.",
+    "request" : {
+      "urlPath" : "/remote/call-traffic-light",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"9h43j18rmsoi2q18pgkwuy4b6ei4pltrh9nc0f4pg0lgsy8\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "0a4aa3f7-9082-4bc4-af9f-0d6c76c6b6c6",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.108973Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "remoteCallTrafficLightWithRetries",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "a62eb2f2-0f31-4792-9622-275b15e6c0e1",
+    "name" : "Call remote service with retries.",
+    "request" : {
+      "urlPath" : "/remote/call-retry",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"73hhc6auu19th0aozis416vaj7yewqra2ocpgf3382i3n1pntfhcmy73yku964zv3xr55530gbzsfijhj54q7r4rm4a4gqoz6mfzis9koe2vsd9h9y141vlvey53x3ok03uizay9v9aby1jk2oshaxmq4sz6m8p2n8qu\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "a62eb2f2-0f31-4792-9622-275b15e6c0e1",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.109395Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "remoteCallWithRetries",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "4652b06c-1730-45e8-b539-960770d64b52",
+    "name" : "Call many remote services in parallel using CompletableFutures.",
+    "request" : {
+      "urlPath" : "/remote/call-many",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"30q6srlyqauxgbw97azk9ynuhcb919w56wts7vwwdasnt8bsmfa3fen73uzl5p2mfcwu9\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "4652b06c-1730-45e8-b539-960770d64b52",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.109781Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "remoteCallHttpClientMany",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "a3d0848e-5d2a-4fc4-a8c2-aebe636a0b1f",
+    "name" : "Call remote service with circuit breaker.",
+    "request" : {
+      "urlPath" : "/remote/call-circuit-breaker",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"valis0d6g\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "a3d0848e-5d2a-4fc4-a8c2-aebe636a0b1f",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.110182Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "remoteCallWithCircuitBreaker",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "68a10fcf-ff98-4847-a007-2b286b69c961",
+    "name" : "Calculate the sum of prime numbers, with some additional delay, using parallel stream (common fork join pool).",
+    "request" : {
+      "urlPath" : "/parallel",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 3855753289859397043,\n  \"name\" : \"Claudio King\",\n  \"message\" : \"Autem eveniet tempora nesciunt ipsam in voluptates. Et nesciunt rerum aliquid suscipit. Qui et doloribus qui id hic qui aut. Aperiam adipisci exercitationem est reiciendis sit nisi animi. Cupiditate p\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "68a10fcf-ff98-4847-a007-2b286b69c961",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.111267Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "goParallel",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "0d1ab4b2-ae02-40a0-b5c5-0d0be6224589",
+    "name" : "Show current information of the common fork join pool.",
+    "request" : {
+      "urlPath" : "/parallel-info",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"stealCount\" : 4697394316648655641,\n  \"activeThreadCount\" : 1028706833,\n  \"runningThreadCount\" : 641550378,\n  \"queuedTaskCount\" : 6984359371816035275,\n  \"parallelism\" : 2016626438,\n  \"poolSize\" : 935548242,\n  \"name\" : \"Gordon Botsford\",\n  \"asyncMode\" : false,\n  \"queuedSubmissionCount\" : 2120683927\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "0d1ab4b2-ae02-40a0-b5c5-0d0be6224589",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.114703Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "parallelInfo",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string"
+              },
+              "activeThreadCount" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "parallelism" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "asyncMode" : {
+                "type" : "boolean"
+              },
+              "poolSize" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "queuedSubmissionCount" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "queuedTaskCount" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "runningThreadCount" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "stealCount" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "ed90e83d-3a24-4dae-a3c5-9843bbb5e605",
+    "name" : "Mind my business for 'duration' milliseconds.",
+    "request" : {
+      "urlPath" : "/mind-my-business",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 3081959215834294974,\n  \"name\" : \"Genevie Schowalter\",\n  \"message\" : \"Et laudantium sunt. Voluptas cumque illo quo nisi est. Animi aut maiores et vero blanditiis omnis ipsum. Et architecto quod sapiente quis temporibus.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "ed90e83d-3a24-4dae-a3c5-9843bbb5e605",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.116563Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "mindMyBusiness",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "3f0c4b10-a496-460f-bb76-fa84d826dbd9",
+    "name" : "Mind my business for 'duration' milliseconds.",
+    "request" : {
+      "urlPath" : "/mind-my-business-s",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 8592403111553542434,\n  \"name\" : \"Martha Schaden\",\n  \"message\" : \"Eveniet est in iure ullam. Laborum asperiores sit. Officiis ab quia magni aut ut consectetur. Quidem est dolor.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "3f0c4b10-a496-460f-bb76-fa84d826dbd9",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.117801Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "mindMyBusinesss",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "40abba6f-fc67-4bb6-be24-300c571e56ed",
+    "name" : "Simulate a memory leak.",
+    "request" : {
+      "urlPath" : "/memory/grow",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 8376099065932719350,\n  \"name\" : \"Erasmo Runolfsson\",\n  \"message\" : \"Sunt eos ut esse temporibus accusantium. Eveniet numquam sunt placeat. Ipsum doloribus sed magni.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "40abba6f-fc67-4bb6-be24-300c571e56ed",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.118982Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "memoryGrow",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "dcabd7f7-0dc8-489b-8c2c-38119d65bea8",
+    "name" : "Clear the memory leak.",
+    "request" : {
+      "urlPath" : "/memory/clear",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 7170789582926847684,\n  \"name\" : \"Paris Dietrich V\",\n  \"message\" : \"Alias deleniti quam alias rerum voluptatum. Et ut voluptas. Placeat eum voluptatum praesentium libero. Magnam autem non vero.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "dcabd7f7-0dc8-489b-8c2c-38119d65bea8",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.11999Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "memoryClear",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "b6ffbe3f-b8b0-45b2-8402-cde3ac3db389",
+    "name" : "Simulate high object churn: lots of objects created per request.",
+    "request" : {
+      "urlPath" : "/memory/churn",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 6157489647029383338,\n  \"name\" : \"Thaddeus Keeling\",\n  \"message\" : \"Sit nulla quibusdam. Porro deleniti quos ea corporis vero veritatis. Nesciunt aut omnis voluptatem nesciunt. Reprehenderit deserunt sint nihil nesciunt nihil voluptas.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "b6ffbe3f-b8b0-45b2-8402-cde3ac3db389",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.120862Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "delay_2",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "ed635539-c4fc-4c1a-b797-8a39bc536108",
+    "name" : "Check funds for customer.",
+    "request" : {
+      "urlPath" : "/fund/check",
+      "method" : "GET",
+      "queryParameters" : {
+        "amount" : {
+          "equalTo" : "8363831910784389368"
+        },
+        "customer" : {
+          "equalTo" : "4oqhsti2d0vaffgzlhgddm9z0rxa4lvq45zhgt29v5pzyg3d6sqwldv5hajjm100v5sxxz0wkfc0753sr"
+        }
+      }
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"totalAmount\" : 3482929095712702546,\n  \"hasSufficientFunds\" : false,\n  \"customer\" : \"4h7njaokja3ayzqln602qor2q58wo0b0czftd\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "ed635539-c4fc-4c1a-b797-8a39bc536108",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.122235Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "checkFund",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "customer" : {
+                "type" : "string"
+              },
+              "totalAmount" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "hasSufficientFunds" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "b7b4268f-3173-4310-a40a-01d6131c6a25",
+    "name" : "The flaky call fails most of the time.",
+    "request" : {
+      "urlPath" : "/flaky",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 5897574581860534902,\n  \"name\" : \"Lane Miller\",\n  \"message\" : \"Iusto quod corporis quia consequuntur sint ipsum. Omnis aperiam impedit consequuntur voluptas aperiam. Quis est nobis et debitis accusantium quo.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "b7b4268f-3173-4310-a40a-01d6131c6a25",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.12402Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "flaky",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "695aa7cc-8913-4f83-bff4-f509c4a4d125",
+    "name" : "Download a file.",
+    "request" : {
+      "urlPath" : "/files/download/Jackeline+Schmidt",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"kv6bryxil8bp1q4niwang54mjibh4spy27w7gvo8cjtj0l0j8xf1x2sqxjrl5359hruk2h1c2\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "695aa7cc-8913-4f83-bff4-f509c4a4d125",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.125014Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "serveFile",
+          "schema" : {
+            "type" : "string",
+            "format" : "binary"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "69df9223-9c87-4b57-b65d-c30802634afb",
+    "name" : "",
+    "request" : {
+      "urlPath" : "/error",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"k1j9\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "69df9223-9c87-4b57-b65d-c30802634afb",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.125388Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "error",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "aded2289-f852-4e26-9a47-372c7f19e4e4",
+    "name" : "The delay call does a simple java sleep in request thread for 'duration' milliseconds.",
+    "request" : {
+      "urlPath" : "/delay",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 1851598772714705297,\n  \"name\" : \"Dr. Jame Lubowitz\",\n  \"message\" : \"Optio facere ut quis perferendis quia qui. Reprehenderit consequatur iste voluptatum facere ipsa. Quidem rerum quasi consequatur. Quisquam repudiandae vitae quidem.\"\n}",
+      "fixedDelayMilliseconds": 3333,
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "aded2289-f852-4e26-9a47-372c7f19e4e4",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.127227Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "delay_3",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "c1bc22c5-2072-4d90-944a-041b6a9b64f0",
+    "name" : "The delay call does a simple java sleep in request thread for 'duration' milliseconds. Use limited number of threads via Semaphore.",
+    "request" : {
+      "urlPath" : "/delay-limited",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 4717132773378215506,\n  \"name\" : \"Cheree Davis\",\n  \"message\" : \"Rerum qui dolores et nostrum debitis similique. Eligendi omnis est et laudantium porro. Eum illo sed.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "c1bc22c5-2072-4d90-944a-041b6a9b64f0",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.128076Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "delayLimited",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "12813e2a-5e28-4664-9402-2d5a174e9c8e",
+    "name" : "Spend some time on CPU doing some magic matrix calculations.",
+    "request" : {
+      "urlPath" : "/cpu/magic-identity-check",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"durationInMillis\" : 2607918285766736318,\n  \"name\" : \"Jesusa Bogan\",\n  \"message\" : \"Vel dolor dolore amet. Autem quo distinctio sunt dolore. Itaque voluptatibus nemo voluptatem corrupti. Iste esse dicta maiores cumque laudantium sequi non.\"\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "12813e2a-5e28-4664-9402-2d5a174e9c8e",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.129231Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "magicIdentityCheck",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "message" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "durationInMillis" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "30bbf431-4e74-42a8-ab31-95c8c81fab13",
+    "name" : "Store a purchase in the database.",
+    "request" : {
+      "urlPath" : "/basket/all",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"baskets\" : [ {\n    \"totalPrice\" : 7842576444508565020,\n    \"id\" : 9111459302216827755,\n    \"prices\" : \"izuwuae29dr7j2r22fa71ahwngl729ln4nalz9519l67sdskd2sjmekoqft8xjk027fw94o4hwc4vmi15ultn84z4py59nzsmxm26uvcahgel2drv465gfnypc36yd05272t0cq53lrmmkunnzjshpwf3mh2wn15mwshlmuw9dp3u7j\",\n    \"products\" : \"fp7t9x4lrhc2rd5lyj111ap5pxrt2uk139m0o737osn06wsuovpbgpoyjx144i1plrsncfre1d1h0ztizfhtfk6t0x1jyn6tue806e9fihwb0o8jzvfhsuwgqevxp6051y411ugli4yjehmj3a54ddyq68b47df64hib4x982tck2\",\n    \"customer\" : \"654zb9lgioikkomvliakh3knexlnts0kyf8nnapdw5e2m1sib7fvnvwjxqdarb8kvobvvs1zt7oneuj85uiqrgo7k5x9lce0e135o\"\n  }, {\n    \"totalPrice\" : 7452687567267627377,\n    \"id\" : 7444091899818026014,\n    \"prices\" : \"xtkwofafk2l7vmwjt5a7fjb11ecdott8emulto356vp5nvtero4xp2a15rpiq2icn4a1tlyo129bcxjoimkgxin97hx2vmmhnu1w221lcfltuzqt0v09jjd0pfe0rckq2mf3upowgm04xm8cm7hi36ljo0wgucs89f\",\n    \"products\" : \"0sx9y0jxmaz3xrqg7fmggnkbo1oge1dkricjfhmst6labyrj22ngb6acswhce4tgvun3dwjzxmu4zz7xzo3m19jci6ny68i4rg9z8k693mp3tm6xew6o2vhsot5mibs9zikp7kjcq5nxofgn4op4pwmnpdv3yf\",\n    \"customer\" : \"4kmrhbjgjqdfyec0te8tzpf2oeuh7c4h3526lnpdk\"\n  }, {\n    \"totalPrice\" : 4531580503851569591,\n    \"id\" : 921069961841271497,\n    \"prices\" : \"6zdl787yxwzjjr31yg1mvu4vn0yetfbmnrtr1yj3yd0bphpwurgu3d2j6fwpc2aoqofjkyln84kr6hjze3x3yiefja\",\n    \"products\" : \"s1zmotd842t67yzak35jdgv3ytglm4ei58w1xj4dorvr0dwea2lgl8iq31x32r86x09y2tvnkz53i1crihglg9o8bmyuiputp7ugzz4pctyrsm9q7f52c00vp7fqoagcgmkpkh5wlvbxfwtdddhby60exin76qiu20b3gb4n9v\",\n    \"customer\" : \"xw36amzhxi2msk0ecxsivc9fvtsrw6nweeoatdo76crfbqube312m1vjgbziyf1yi4qgyqgxvbafsed61zlztlvb6875sgpxh\"\n  }, {\n    \"totalPrice\" : 8388285912279931320,\n    \"id\" : 4171140192942113713,\n    \"prices\" : \"zhdt8rctp9sk6mznyscgphvmhl2k5urp6bnml9w7a9r2pgsuuhnkfvdfubkhstgjt87ixtkt4otrs16x9m2piatmenv47dhpw7e1nz9fr124earhtbhb1pcno7rppry8rbabs078zyuar6carvkq0tx96t1wzy22pd54ff1gc1yr8h\",\n    \"products\" : \"ydermhj7ssqqjrbd99f7kaz2b55e0pbm612qmwklql6qzgaced9pnm4fp39phzlql6qyxmjcy8c7jj0quwc8udjsrotnw15utoznehuw3hyy2l25n3jqq02zgig4wzztd4\",\n    \"customer\" : \"781jaqzsnkjrjecy5td8olzdvclz1k0di8rpmhsuh8mt31gdzy25j5akqlt07stxi7cumv3zybd2s0avs80npb94zor7dzyvpx06v5f3zrrmwjiaavqhiyb15lyezgen\"\n  }, {\n    \"totalPrice\" : 4250787406384973327,\n    \"id\" : 9165779969115547246,\n    \"prices\" : \"9rjat1d186q2goi5xv3imv3gjc4ohlaf5qjdc32zcemkbg2cohxiwv0svmpdpyfvcsci6m6ehv9tzbspdtw5cjmmiik2bgeykajlhjbprgl8t1e3s2xkrfaf\",\n    \"products\" : \"0qizdf5xmysjs95k391v7b0w1x7a3mc3as7r1qrmv9t5dia353p5fuzduv328calgfrtd55s871zbiwtog619l\",\n    \"customer\" : \"jbte87is7q63sg3c5g3qn2h0j0sstjx30ji42fjw5cawfiion5xxp5ftp7zq3w5jbk90hdgfww8hoajftglr3333px1ddcj2i6dz5lkgyatgdg85w5127osp630285opr5lzzxzck273v4mz8ig149fze5z8r2gjj8g27\"\n  }, {\n    \"totalPrice\" : 2332738010024196350,\n    \"id\" : 3080993828271136734,\n    \"prices\" : \"kltg193ehne3ahkjl789ba5axqr4iojgbt1k33fp2exow2bg738xehl0ecbcjk3ruj2hpo13orfktreftzowsu6oip0cowch6mic1ld14mw23tfupugr6kbp3nap1hvy4lw05ug72jgekbhu\",\n    \"products\" : \"yp7b6n4klp92fcgo4hwlko8n1n45cxuapqbdkwxkl0uvvrnxtlf29veyz96n2r1iq59zuulm8y6u4lr1289bt6eo48spv673wmsn7kaplbggh63ou4ibpig2\",\n    \"customer\" : \"kc848swsfj9jelj2kcfz3w7ml01hfxcqg1hfwh8y84jejs8ucu2hn6bwu5xt00at92vwlt8wbur027gkjbw721lwv5duilw3mj1kzxmsc\"\n  } ]\n}",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "30bbf431-4e74-42a8-ab31-95c8c81fab13",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.132144Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "all",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "baskets" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/Basket"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "4c5ec2dd-8a1f-4205-94c1-30db9e921d82",
+    "name" : "Call CompletableFuture with timeout and exceptions.",
+    "request" : {
+      "urlPath" : "/async/exception",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"twl1qrp3dcogah76cecswe85ctdxkxev5bnm2uzl5brvxsmvmv0y34gh0nme5glvys5p5chg2iul93xyvxb7z6assvymp86bkf2i4kgxdnepeii1byxrd21sgvg3gey0bc7byrmcvf5ok8fm7kvj11zfg8m4pxey4beuoks572v0qmtdp\"",
+      "headers" : {
+        "Content-Type" : "application/json"
+      }
+    },
+    "uuid" : "4c5ec2dd-8a1f-4205-94c1-30db9e921d82",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.132532Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "asyncException",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "648fefa4-a772-4d3c-9469-00db98b522ee",
+    "name" : "Welcome to afterburner.",
+    "request" : {
+      "urlPath" : "/",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\"g7dlb4y2vm7n4ckpmfqoxdxxsltgyfxwqwq4txainq83ilpist2tx15ykhen213ilh3sw9kpczbbeu5kcp9w7h54rk4quhdh3adbm0zaexp5zizye4sh3ztq1zuoa3smp3pgxhfnsogp6i8v1l59dln25cs2ge353c9kwttmcxdh2mf1eb\"",
+      "headers" : {
+        "Content-Type" : "text/html"
+      }
+    },
+    "uuid" : "648fefa4-a772-4d3c-9469-00db98b522ee",
+    "persistent" : true,
+    "metadata" : {
+      "mocklab" : {
+        "created" : {
+          "at" : "2022-11-25T15:44:43.132997Z",
+          "via" : "OAS3_IMPORT"
+        },
+        "oas" : {
+          "operationId" : "welcome",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  } ],
+  "meta" : {
+    "total" : 32
+  }
+}

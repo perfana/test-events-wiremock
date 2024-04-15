@@ -19,6 +19,7 @@ import io.perfana.eventscheduler.api.EventLogger;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URIBuilder;
@@ -102,7 +103,12 @@ class WiremockClient {
             URIBuilder uriBuilder = new URIBuilder(uri);
 
             HttpPost httpPost = new HttpPost(uriBuilder.build());
-            String replaced = injectReplacements(fileContents, replacements);
+
+            if (replacements == null) {
+                logger.info("No replacements provided, skipping replacements.");
+            }
+
+            String replaced = replacements == null ? fileContents : injectReplacements(fileContents, replacements);
 
             logger.debug("About to send to " + uriPath + ": " + reduceLength(replaced, 2048));
 
@@ -115,6 +121,24 @@ class WiremockClient {
             logger.debug(result);
         } catch (URISyntaxException | IOException e) {
             throw new WiremockClientException("call to wiremock failed", e);
+        }
+    }
+
+    void deleteAllAtPath(String uriPath) {
+        String uri = String.format("%s%s", baseUrl, uriPath);
+
+        try {
+            URIBuilder uriBuilder = new URIBuilder(uri);
+
+            HttpDelete httpDelete = new HttpDelete(uriBuilder.build());
+
+            logger.info("About to delete all at " + uriPath);
+
+            HttpResponse response = executeRequest(httpDelete);
+            String result = responseToString(response);
+            logger.debug(result);
+        } catch (URISyntaxException | IOException e) {
+            throw new WiremockClientException("delete call to wiremock failed", e);
         }
     }
 

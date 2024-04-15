@@ -37,6 +37,9 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
 
     private static final Set<String> ALLOWED_CUSTOM_EVENTS =
             setOf(EVENT_WIREMOCK_CHANGE_MAPPINGS, EVENT_WIREMOCK_CHANGE_SETTINGS, EVENT_WIREMOCK_CHANGE_IMPORT);
+    public static final String MAPPINGS_URI = "/__admin/mappings";
+    public static final String MAPPINGS_IMPORT_URI = "/__admin/mappings/import";
+    public static final String ADMIN_SETTINGS_URI = "/__admin/settings";
 
     private List<WiremockClient> clients;
     private File rootDir;
@@ -109,13 +112,13 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
         String eventName = scheduleEvent.getName();
         
         if (EVENT_WIREMOCK_CHANGE_MAPPINGS.equalsIgnoreCase(eventName)) {
-            injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/mappings");
+            injectDelayFromSettingsIntoFiles(scheduleEvent, MAPPINGS_URI);
         }
         else if (EVENT_WIREMOCK_CHANGE_IMPORT.equalsIgnoreCase(eventName)) {
-            injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/mappings/import");
+            injectDelayFromSettingsIntoFiles(scheduleEvent, MAPPINGS_IMPORT_URI);
         }
         else if (EVENT_WIREMOCK_CHANGE_SETTINGS.equalsIgnoreCase(eventName)) {
-            injectDelayFromSettingsIntoFiles(scheduleEvent, "/__admin/settings");
+            injectDelayFromSettingsIntoFiles(scheduleEvent, ADMIN_SETTINGS_URI);
         }
         else {
             logger.debug("ignoring unknown event [" + eventName + "]");
@@ -125,25 +128,48 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
     private void injectDelayFromSettingsIntoFiles(CustomEvent scheduleEvent, String uriPath) {
         Map<String, String> settings = parseSettings(scheduleEvent.getSettings());
 
-        String file = settings.get("file");
+        if (settings.containsKey("file") && settings.containsKey("directory")) {
+            throw new WiremockEventException("Both file and directory settings are present. Please use only one.");
+        }
 
-        Map<String, String> replacements = settings.entrySet().stream()
-                .filter(e -> !e.getKey().equals("file"))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        if (settings.containsKey("file")) {
+            String file = settings.get("file");
 
-        File jsonFile = null;
-        if (file != null) {
-            jsonFile = new File(rootDir, file);
-            if (!jsonFile.exists()) {
-                logger.error("Wiremock json file does not exist: " + jsonFile);
-                return;
+            Map<String, String> replacements = settings.entrySet().stream()
+                    .filter(e -> !e.getKey().equals("file"))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+            File jsonFile = null;
+            if (file != null) {
+                jsonFile = new File(rootDir, file);
+                if (!jsonFile.exists()) {
+                    logger.error("Wiremock json file does not exist: " + jsonFile);
+                    return;
+                }
+            }
+
+            File[] files = (file != null) ? new File[]{jsonFile} : rootDir.listFiles();
+
+            if (rootDir != null && clients != null) {
+                clients.forEach(client -> importAllWiremockFiles(client, files, replacements, uriPath));
             }
         }
 
-        File[] files = (file != null) ? new File[] { jsonFile } : rootDir.listFiles();
-
-        if (rootDir != null && clients != null) {
-            clients.forEach(client -> importAllWiremockFiles(client, files, replacements, uriPath));
+        // directory will load all files in the directory after deleting the old ones
+        if (settings.containsKey("directory")) {
+            String directory = settings.get("directory");
+            File dir = new File(rootDir, directory);
+            if (!dir.exists()) {
+                throw new WiremockEventException("Directory does not exist: " + dir);
+            }
+            File[] files = dir.listFiles();
+            if (files != null && clients != null) {
+                clients.forEach((WiremockClient client) -> {
+                    // delete all mappings... imports need to be deleted per mapping uuid
+                    if (uriPath.equals(MAPPINGS_URI)) { client.deleteAllAtPath(uriPath); }
+                    importAllWiremockFiles(client, files, null, uriPath);
+                });
+            }
         }
     }
 

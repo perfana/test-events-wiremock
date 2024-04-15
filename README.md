@@ -19,7 +19,7 @@ Custom events:
 Use the correct type of file for each event. For import use the exported file of wiremock studio
 that contains multiple mappings.
 
-All files should 
+All files should end in `.json`.
 
 Example wiremock response (single mapping) with a dynamic delay:
 
@@ -39,8 +39,8 @@ Example wiremock response (single mapping) with a dynamic delay:
   }
 }
 ```
-Put this in a file at in the files dir and it gets uploaded with the specific delay.
-The `$delay` will be replaced by the values in the `eventSchedulerScript`.
+Put this in a mapper file located in the `wiremockFilesDir` and it gets uploaded with 
+the specific delay. The `$delay` will be replaced by the values in the `eventSchedulerScript`.
 
 You can define multiple delays in multiple mapping files.
 
@@ -58,12 +58,75 @@ Then increase the response time to 4000 milliseconds after 30 seconds.
 And increase response time to 8000 milliseconds after 1 minute and 30 seconds.
 
 The second part (`wiremock-change-mappings(fast)`) is an event name plus annotation that 
-is send as event annotation as made visible in Perfana and in graphs.
+is sent as event annotation as made visible in Perfana and in graphs.
 
 To replace multiple delays, use multiple replace tags in your mapper files,
 e.g. `${delay-1}`, `${delay-2}`, `${delay-3}`, you can use a `;` separator in one event line:
 
     PT30S|wiremock-change-mappings|delay-1=4000;delay-2=3000;delay-3=2000
+
+## specific file
+
+When no `file` or `directory` is specified, all `.json` files in the `wiremockFilesDir` will have the
+replacements applied and will be uploaded.
+
+To just upload one specific file, use the file parameter. Example, only the `wiremock-settings.json` will be
+processed and replaced:
+
+```
+PT10S|wiremock-change-settings|file=wiremock-settings.json;delay=400
+```
+
+## directories
+
+Instead of using replacements, you can also create multiple directories that contain
+the `mappings`, `settings` or `import` files. By pointing to different directories at certain times,
+the files in that directory will be loaded. 
+
+
+Example schedules:
+
+### mappings
+
+First the mappings will be deleted and replaced,
+so you can use totally different mappings if needed.
+
+```xml
+<eventSchedulerScript>
+  PT8S|wiremock-change-mappings|directory=my-mappings-dir-fast
+  PT13S|wiremock-change-mappings|directory=my-mappings-dir-slow
+  PT38S|wiremock-change-mappings|directory=my-mappings-dir-fast
+</eventSchedulerScript>
+```
+
+### imports
+
+Import files will also replaced, the imported mapping are not deleted.
+The uuid's of the mappings need to be the same in each file for this to succeed.
+
+```xml
+<eventSchedulerScript>
+  PT13S|wiremock-change-import|directory=my-imports-dir-fast
+  PT25S|wiremock-change-import|directory=my-imports-dir-slow
+  PT50S|wiremock-change-import|directory=my-imports-dir-errors
+  PT59S|wiremock-change-import|directory=my-imports-dir-fast
+</eventSchedulerScript>
+```
+
+### settings
+
+The settings file will be replaced.
+
+```xml
+<eventSchedulerScript>
+  PT0S|wiremock-change-settings|directory=my-settings-dir-fast
+  PT5S|wiremock-change-settings|directory=my-settings-dir-slow
+  PT30S|wiremock-change-settings|directory=my-settings-dir-fast
+</eventSchedulerScript>
+```
+
+Make sure the directories are sub-directories of the `wiremockFilesDir`.
+
 
 ## use proxy
 

@@ -36,7 +36,7 @@ public class WiremockEventTest {
     public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort().dynamicHttpsPort());
 
     @Test
-    public void runningSomeEvents() {
+    public void runningSomeEventsWithFiles() {
 
         WiremockEventConfig eventConfig = new WiremockEventConfig();
         eventConfig.setName("myWiremockEvent");
@@ -53,6 +53,36 @@ public class WiremockEventTest {
         event.customEvent(CustomEvent.createFromLine("PT3S|wiremock-change-mappings|file=wiremock-delay.json;delay=4000"));
         event.customEvent(CustomEvent.createFromLine("PT13S|wiremock-change-import|file=afterburner-stubs.json;delay=5000"));
         event.customEvent(CustomEvent.createFromLine("PT1M|wiremock-change-mappings|file=wiremock-delay.json;delay=8000"));
+        event.afterTest();
+
+        // event.check() can be used to check if all went well with the wiremock calls, todo?
+
+    }
+
+    @Test
+    public void runningSomeEventsWithDirectory() {
+
+        WiremockEventConfig eventConfig = new WiremockEventConfig();
+        eventConfig.setName("myWiremockEvent");
+        eventConfig.setWiremockFilesDir(new File(".","src/test/resources/wiremock-stubs").getAbsolutePath());
+        eventConfig.setWiremockUrl("http://localhost:" + wireMockRule.port());
+        TestConfig testConfig = TestConfig.builder().testRunId("my-test-run-id").build();
+
+        EventMessageBus messageBus = new EventMessageBusSimple();
+
+        WiremockEvent event = new WiremockEvent(eventConfig.toContext(), testConfig.toContext(), messageBus, EventLoggerStdOut.INSTANCE);
+        event.beforeTest();
+        event.keepAlive();
+        event.customEvent(CustomEvent.createFromLine("PT0S|wiremock-change-settings|directory=my-settings-dir-1"));
+        event.customEvent(CustomEvent.createFromLine("PT5S|wiremock-change-settings|directory=my-settings-dir-2"));
+        event.customEvent(CustomEvent.createFromLine("PT8S|wiremock-change-mappings|directory=my-mappings-dir-1"));
+        event.customEvent(CustomEvent.createFromLine("PT13S|wiremock-change-mappings|directory=my-mappings-dir-2"));
+        event.customEvent(CustomEvent.createFromLine("PT13S|wiremock-change-import|directory=my-imports-dir-1"));
+        event.customEvent(CustomEvent.createFromLine("PT25S|wiremock-change-import|directory=my-imports-dir-2"));
+        event.customEvent(CustomEvent.createFromLine("PT30S|wiremock-change-settings|directory=my-settings-dir-1"));
+        event.customEvent(CustomEvent.createFromLine("PT38S|wiremock-change-mappings|directory=my-mappings-dir-1"));
+        event.customEvent(CustomEvent.createFromLine("PT44S|wiremock-change-import|directory=my-imports-dir-1"));
+
         event.afterTest();
 
         // event.check() can be used to check if all went well with the wiremock calls, todo?
