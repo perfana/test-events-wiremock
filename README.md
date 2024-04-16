@@ -88,8 +88,7 @@ Example schedules:
 
 ### mappings
 
-First the mappings will be deleted and replaced,
-so you can use totally different mappings if needed.
+The mappings are replaced. You need the same mappings to override the previous ones.
 
 ```xml
 <eventSchedulerScript>

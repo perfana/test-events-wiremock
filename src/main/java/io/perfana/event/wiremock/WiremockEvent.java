@@ -165,8 +165,6 @@ public class WiremockEvent extends EventAdapter<WiremockEventContext> {
             File[] files = dir.listFiles();
             if (files != null && clients != null) {
                 clients.forEach((WiremockClient client) -> {
-                    // delete all mappings... imports need to be deleted per mapping uuid
-                    if (uriPath.equals(MAPPINGS_URI)) { client.deleteAllAtPath(uriPath); }
                     importAllWiremockFiles(client, files, null, uriPath);
                 });
             }
